@@ -35,7 +35,25 @@
 <link type="text/css" href="{{ asset('dashboard/vendor') }}/fullcalendar/main.min.css" rel="stylesheet">
 <link type="text/css" href="{{ asset('dashboard/vendor') }}/apexcharts/dist/apexcharts.css" rel="stylesheet">
 <link type="text/css" href="{{ asset('dashboard/vendor') }}/dropzone/dist/min/dropzone.min.css" rel="stylesheet">
+
+
+
 <link type="text/css" href="{{ asset('dashboard/vendor') }}/choices.js/public/assets/styles/choices.min.css" rel="stylesheet">
 <link type="text/css" href="{{ asset('dashboard/vendor') }}/leaflet/dist/leaflet.css" rel="stylesheet">
 <link type="text/css" href="{{ asset('dashboard/css') }}/volt.css" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.15.2/css/selectize.default.min.css"
+  integrity="sha512-pTaEn+6gF1IeWv3W1+7X7eM60TFu/agjgoHmYhAfLEU8Phuf6JKiiE8YmsNC0aCgQv4192s4Vai8YZ6VNM6vyQ=="
+  crossorigin="anonymous"
+  referrerpolicy="no-referrer"
+/>
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.15.2/js/selectize.min.js"
+  integrity="sha512-IOebNkvA/HZjMM7MxL0NYeLYEalloZ8ckak+NDtOViP7oiYzG5vn6WVXyrJDiJPhl4yRdmNAG49iuLmhkUdVsQ=="
+  crossorigin="anonymous"
+  referrerpolicy="no-referrer"
+></script>
+
+
