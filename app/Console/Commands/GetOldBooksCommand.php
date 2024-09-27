@@ -41,7 +41,7 @@ class GetOldBooksCommand extends Command
 
         $urls = [];
 
-        for ($i = 2; $i <= 3; $i++) {
+        for ($i = 2; $i <= $noPages; $i++) {
             $url = "https://www.kutubypdf.com/page/" . $i;
             $crawler = $client->request('GET', $url);
             if ($client->getResponse()->getStatusCode() !== 200) {
