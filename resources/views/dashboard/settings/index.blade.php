@@ -23,17 +23,17 @@
                         <textarea name="site_keywords" class="form-control" id="site_keywords">{{ $settings->keywords }}</textarea>
                     </div>
                     <div class="mb-3">
-                        <label for="header_ads" class="form-label">Header Ads</label>
-                        <textarea name="header_ads" class="form-control" id="header_ads">{{ $settings->header_ads }}</textarea>
+                        <label for="header_adss" class="form-label">Header Ads</label>
+                        <textarea name="header_ads" class="form-control" id="header_adss">{{ $settings->header_ads }}</textarea>
                     </div>
                     <div class="mb-3">
-                        <label for="footer_ads" class="form-label">Footer Ads</label>
-                        <textarea name="footer_ads" class="form-control" id="footer_ads">{{ $settings->footer_ads }}</textarea>
+                        <label for="footer_adss" class="form-label">Footer Ads</label>
+                        <textarea name="footer_ads" class="form-control" id="footer_adss">{{ $settings->footer_ads }}</textarea>
                     </div>
 
                     <div class="mb-3">
-                        <label for="single_ads" class="form-label">Single Ads</label>
-                        <textarea name="single_ads" class="form-control" id="single_ads">{{ $settings->single_ads }}</textarea>
+                        <label for="single_adss" class="form-label">Single Ads</label>
+                        <textarea name="single_ads" class="form-control" id="single_adss">{{ $settings->single_ads }}</textarea>
                     </div>
                     <div class="mb-3">
                         <label for="site_logo" class="form-label">Site Logo</label>
