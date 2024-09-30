@@ -109,6 +109,8 @@ Route::controller(HomeController::class)->name("front.")->group(function () {
 
     Route::get("search","search")->name("search");
 
+    Route::get("best","best")->name("best");
+
 
 
 

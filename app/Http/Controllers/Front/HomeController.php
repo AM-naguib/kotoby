@@ -9,7 +9,9 @@ use App\Models\Author;
 use App\Models\Review;
 use App\Models\Section;
 use App\Models\Favorite;
+use App\Models\ReadBook;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Events\NewCommentReviewEvent;
 use App\Notifications\ReviewNotification;
@@ -97,5 +99,15 @@ class HomeController extends Controller
     public function search(Request $request){
         $books = Book::where('title', 'like', '%' . $request->search . '%')->get();
         return view('front.search', compact('books'));
+    }
+
+
+    public function best(){
+        $books = ReadBook::select('book_id', DB::raw('COUNT(*) as views_count'))
+    ->groupBy('book_id')
+    ->orderBy('views_count', 'desc')
+    ->get();
+
+    return view('front.best', compact('books'));
     }
 }
