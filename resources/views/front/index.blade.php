@@ -1,4 +1,7 @@
 @extends('front.layouts.app')
+@section('title', "الرئيسية")
+@section('description', getSetting()->description)
+@section('keywords', getSetting()->keywords)
 @section('content')
     <!-- search-box start -->
     <section class="search-box d-flex align-items-center">

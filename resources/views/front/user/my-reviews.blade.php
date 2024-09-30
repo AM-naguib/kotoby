@@ -1,4 +1,7 @@
 @extends('front.layouts.app')
+@section("title", "مراجعاتي")
+@section("description", getSetting()->description)
+@section("keywords", getSetting()->keywords)
 @section('content')
     <div class="container">
         <div class="row border-bottom mt-5">

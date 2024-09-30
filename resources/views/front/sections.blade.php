@@ -1,4 +1,7 @@
 @extends('front.layouts.app')
+@section("title", "تصفح جميع الاقسام")
+@section("description", getSetting()->description)
+@section("keywords", getSetting()->keywords)
 @section('content')
 
 

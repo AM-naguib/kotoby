@@ -2,8 +2,10 @@
 
 namespace App\Jobs;
 
+use Log;
 use App\Models\Book;
 use App\Models\Author;
+use App\Models\Keyword;
 use App\Models\Section;
 use Illuminate\Support\Str;
 use Illuminate\Bus\Queueable;
@@ -12,7 +14,6 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
-use Log;
 use Symfony\Component\HttpClient\HttpClient;
 use Symfony\Component\BrowserKit\HttpBrowser;
 
@@ -96,7 +97,7 @@ class KutubypdfJob implements ShouldQueue
                 $section = Section::firstOrCreate(['name' => $data["section"], 'slug' => Str::slug($data["section"])]);
             }
 
-            Book::create([
+            $book = Book::create([
                 "title" => $data["title"],
                 "section_id" => $section->id ?? null,
                 "author_id" => $author->id ?? null,
@@ -108,6 +109,7 @@ class KutubypdfJob implements ShouldQueue
                 "size" => $data["size"] ?? null,
                 "pdf_url" => $data["pdf_url"] ?? null,
             ]);
+            $this->addCustomKeywords($book);
             Log::info("Book added: " . $data["title"]);
 
         } else {
@@ -128,6 +130,26 @@ class KutubypdfJob implements ShouldQueue
     function getValue($text) {
         $parts = explode(":", $text);
         return isset($parts[1]) ? trim($parts[1]) : 'Not found';
+    }
+    public function addCustomKeywords($book){
+        $author = $book->author->name ?? "";
+        $titles = [
+            "تحميل $book->title pdf",
+            "رواية $book->title pdf",
+            "تنزيل $book->title مجانا",
+            "$book->title pdf",
+            "$book->title $author",
+            "رواية $book->title ل$author",
+            "$book->title $author pdf"
+        ];
+        foreach ($titles as $title){
+            Keyword::create([
+                "name" => $title,
+                "slug" => Str::slug($title),
+                "book_id" => $book->id
+            ]);
+        }
+        return true;
     }
 
 }

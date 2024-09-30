@@ -50,7 +50,15 @@ class Book extends Model
         }
     }
 
-    
+    public function keywords(){
+        return $this->hasMany(Keyword::class);
+    }
+
+    public function htmlKeywords(){
+
+        return implode(", ", $this->keywords->pluck('name')->toArray());
+    }
+
 
 
 }

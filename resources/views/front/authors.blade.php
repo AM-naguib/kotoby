@@ -1,4 +1,8 @@
 @extends('front.layouts.app')
+@section("title", "الكتاباء")
+@section("description", getSetting()->description)
+@section("keywords", getSetting()->keywords)
+
 @section('content')
     <!-- cards start -->
     <section class="cards">

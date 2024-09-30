@@ -1,4 +1,8 @@
 @extends('front.layouts.app')
+@section('title', "تسجيل الدخول")
+@section('description', getSetting()->description)
+@section('keywords', getSetting()->keywords)
+
 @section('content')
 
     <!-- Start login -->

@@ -1,4 +1,8 @@
 @extends('front.layouts.app')
+@section('title', "قراءة $book->title")
+@section('description', $book->description)
+@section('keywords', $book->htmlKeywords())
+
 @section('content')
     <div class="container">
         <div class="row border-bottom py-3">

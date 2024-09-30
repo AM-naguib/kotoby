@@ -1,11 +1,11 @@
 @extends('front.layouts.app')
-
+@section("title", "تحميل " . $book->title)
+@section("description", $book->description)
+@section('keywords', $book->htmlKeywords())
 @section('content')
     <style>
-        /* تصغير حجم النجوم */
         .starability-result {
             font-size: 16px;
-            /* حجم أصغر للنجوم */
             line-height: 1;
             display: inline-block;
             margin: 0;

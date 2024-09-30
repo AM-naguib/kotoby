@@ -30,8 +30,9 @@ class HomeController extends Controller
     {
 
         $book = Book::where('slug', $slug)->first();
+        $keywords = implode(', ', $book->keywords->pluck('name')->toArray());
 
-        return view('front.single', compact('book'));
+        return view('front.single', compact('book',"keywords"));
     }
 
     public function sections()
