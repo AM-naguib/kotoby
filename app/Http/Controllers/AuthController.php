@@ -13,8 +13,9 @@ class AuthController extends Controller
 
 
     public function create(){
-        dd("create");
+        return view("front.login");
     }
+
     public function store(Request $request){
         $data = $request->validate([
             "username" => "required",
@@ -26,5 +27,11 @@ class AuthController extends Controller
         }
 
         return back()->with("error", "Invalid username or password");
+    }
+
+
+    public function logout (){
+        auth()->logout();
+        return redirect()->route("login.create");
     }
 }

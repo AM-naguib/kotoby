@@ -34,7 +34,8 @@
                                     <td class="d-flex gap-3">
                                         <button class="btn btn-primary"
                                             onclick="showModal('edit', {{ $author->id }}, '{{ $author->name }}')">Edit</button>
-                                    <button class="btn btn-danger" onclick="deleteItem({{ $author->id }})">Delete</button>
+                                        <button class="btn btn-danger"
+                                            onclick="deleteItem({{ $author->id }})">Delete</button>
                                     </td>
 
                                 </tr>
@@ -73,13 +74,14 @@
                 $("#modal-title-default").text("Create Author");
                 let route = "{{ route('dashboard.authors.store') }}";
                 $("#modalBody").html(modalHtml(route, 'POST'));
-            }else if (type == 'edit') {
+            } else if (type == 'edit') {
                 $("#modal-title-default").text("Edit Author");
 
                 let route = "{{ route('dashboard.authors.update', ':id') }}".replace(':id', id);
                 $("#modalBody").html(modalHtml(route, 'PUT', name));
             }
             $("#modal-default").modal("show");
+           
         }
 
 

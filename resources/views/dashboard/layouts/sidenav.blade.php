@@ -5,7 +5,7 @@
                 <div class="avatar-lg me-4"><img src="{{ asset(' assets') }}/img/team/profile-picture-3.jpg"
                         class="card-img-top rounded-circle border-white" alt="Bonnie Green"></div>
                 <div class="d-block">
-                    {{-- <h2 class="h5 mb-3">Hi, {{ auth()->user()->name }}</h2> --}}
+                    <h2 class="h5 mb-3">Hi, {{ auth()->user()->name }}</h2>
                     <form action="{{ route('logout') }}" method="post">
                         @csrf
                         <button class="btn btn-secondary btn-sm d-inline-flex align-items-center">
@@ -37,7 +37,8 @@
             <li class="nav-item">
                 <a href="" class="nav-link d-flex align-items-center">
                     <span class="sidebar-icon">
-                        <img src="{{ asset('dashboard/assets/img') }}/logo.png" height="20" width="20" alt="Volt Logo">
+                        <img src="{{ asset('dashboard/assets/img') }}/logo.png" height="20" width="20"
+                            alt="Volt Logo">
                     </span>
                     <span class="mt-1 sidebar-text">Kotoby
                     </span></a>
@@ -106,6 +107,74 @@
                             </svg>
                         </span>
                         <span class="sidebar-text">Books</span>
+                    </span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{{ route('dashboard.reviews.index') }}"
+                    class="nav-link d-flex align-items-center justify-content-between">
+                    <span>
+                        <span class="sidebar-icon">
+                            <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"></path>
+                                <path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"></path>
+                            </svg>
+                        </span>
+                        <span class="sidebar-text">Reviews</span>
+                    </span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <span class="nav-link collapsed d-flex justify-content-between align-items-center"
+                    data-bs-toggle="collapse" data-bs-target="#submenu-app">
+                    <span>
+                        <span class="sidebar-icon">
+                            <svg
+                                class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd"
+                                    d="M5 4a3 3 0 00-3 3v6a3 3 0 003 3h10a3 3 0 003-3V7a3 3 0 00-3-3H5zm-1 9v-1h5v2H5a1 1 0 01-1-1zm7 1h4a1 1 0 001-1v-1h-5v2zm0-4h5V8h-5v2zM9 8H4v2h5V8z"
+                                    clip-rule="evenodd"></path>
+                            </svg> </span><span class="sidebar-text">Reviews</span>
+                        </span>
+                        <span
+                        class="link-arrow">
+                        <svg class="icon icon-sm" fill="currentColor" viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd"
+                                d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                                clip-rule="evenodd"></path>
+                        </svg></span></span>
+                <div class="multi-level collapse" role="list" id="submenu-app" aria-expanded="false">
+                    <ul class="flex-column nav">
+                        <li class="nav-item">
+                            <a class="nav-link"
+                                href="{{ route('dashboard.reviews.index') }}">
+                                <span class="sidebar-text">All Reviews</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link"
+                                href="{{ route('dashboard.reviews.requests') }}">
+                                <span class="sidebar-text">Review Requests</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a href="{{ route('dashboard.settings.index') }}"
+                    class="nav-link d-flex align-items-center justify-content-between">
+                    <span>
+                        <span class="sidebar-icon">
+                            <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"></path>
+                                <path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"></path>
+                            </svg>
+                        </span>
+                        <span class="sidebar-text">Settings</span>
                     </span>
                 </a>
             </li>

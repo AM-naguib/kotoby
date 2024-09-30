@@ -12,10 +12,10 @@
 <script src="{{ asset('dashboard/vendor') }}/vanillajs-datepicker/dist/js/datepicker.min.js"></script>
 <script src="{{ asset('dashboard/vendor') }}/fullcalendar/main.min.js"></script>
 <script src="{{ asset('dashboard/vendor') }}/dropzone/dist/min/dropzone.min.js"></script>
-<script src="{{ asset('dashboard/vendor') }}/choices.js/public/assets/scripts/choices.min.js"></script>
+{{-- <script src="{{ asset('dashboard/vendor') }}/choices.js/public/assets/scripts/choices.min.js"></script> --}}
 <script src="{{ asset('dashboard/vendor') }}/notyf/notyf.min.js"></script>
 <script src="{{ asset('dashboard/vendor') }}/leaflet/dist/leaflet.js"></script>
-<script src="{{ asset('dashboard/vendor') }}/svg-pan-zoom/dist/svg-pan-zoom.min.js"></script>
+{{-- <script src="{{ asset('dashboard/vendor') }}/svg-pan-zoom/dist/svg-pan-zoom.min.js"></script> --}}
 <script src="{{ asset('dashboard/vendor') }}/svgmap/dist/svgMap.min.js"></script>
 <script src="{{ asset('dashboard/vendor') }}/simplebar/dist/simplebar.min.js"></script>
 <script src="{{ asset('dashboard/vendor') }}/sortablejs/Sortable.min.js"></script>
