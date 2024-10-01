@@ -46,11 +46,9 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.1/dist/sweetalert2.min.css
                     </div>
                     <div class="login-menu">
                         @guest
+                        <a href="{{ route('login.create') }}" class="btn btn-danger text-white rounded-pill d-none d-md-inline-block">تسجيل الدخول</a>
+                        <a href="{{ route('register.create') }}" class="btn btn-primary text-white rounded-pill d-none d-md-inline-block">انشاء حساب</a>
 
-                        <a href="{{ route('login.create') }}" class="btn btn-danger text-white"
-                            style="border-radius: 25px">تسجيل الدخول</a>
-                        <a href="{{ route('register.create') }}" class="btn btn-primary text-white"
-                            style="border-radius: 25px">انشاء حساب</a>
                         @endguest
 
                         <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
@@ -96,10 +94,10 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.1/dist/sweetalert2.min.css
                 <ul class="navbar-nav justify-content-end flex-grow-1 pe-3 my-3">
                     @guest
 
-                    <li class="nav-item d-none d-md-block">
+                    <li class="nav-item">
                         <a class="nav-link" aria-current="page" href="{{ route('login.create') }}">تسجيل الدخول</a>
                     </li>
-                    <li class="nav-item d-none d-md-block">
+                    <li class="nav-item">
                         <a class="nav-link" aria-current="page" href="{{ route('register.create') }}">انشاء حساب</a>
                     </li>
                     @endguest
