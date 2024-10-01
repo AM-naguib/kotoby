@@ -153,9 +153,4 @@ Route::get('test', function () {
 
 
 
-Route::get("test1",function(){
-    return view("test");
-});
-Route::get("test2",function(){
-event(new NewCommentReviewEvent("dasdas"));
-});
+

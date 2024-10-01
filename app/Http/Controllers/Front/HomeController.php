@@ -20,7 +20,8 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $books = Book::get();
+        $books = Book::orderBy("id", "desc")->paginate(30);
+
 
         return view('front.index', compact('books'));
     }
@@ -37,13 +38,13 @@ class HomeController extends Controller
 
     public function sections()
     {
-        $sections = Section::orderBy("id", "desc")->get();
+        $sections = Section::orderBy("id", "desc")->paginate(30);
         return view('front.sections', compact('sections'));
     }
     public function authors()
     {
 
-        $authors = Author::orderBy("id", "desc")->get();
+        $authors = Author::orderBy("id", "desc")->paginate(30);
         return view('front.authors', compact('authors'));
     }
 
@@ -51,7 +52,9 @@ class HomeController extends Controller
     {
         $model = "App\Models\\" . ucfirst($type);
         $data = $model::where('slug', $slug)->first();
-        return view('front.page', compact('data'));
+        $books = $data->books()->paginate(30);
+
+        return view('front.page', compact('data', 'books'));
     }
 
     public function review(Request $request, $bookId)
@@ -98,7 +101,7 @@ class HomeController extends Controller
     }
 
     public function search(Request $request){
-        $books = Book::where('title', 'like', '%' . $request->search . '%')->get();
+        $books = Book::where('title', 'like', '%' . $request->search . '%')->orderBy("id", "desc")->paginate(30);
         return view('front.search', compact('books'));
     }
 
@@ -107,7 +110,7 @@ class HomeController extends Controller
         $books = ReadBook::select('book_id', DB::raw('COUNT(*) as views_count'))
     ->groupBy('book_id')
     ->orderBy('views_count', 'desc')
-    ->get();
+    ->paginate(30);
 
     return view('front.best', compact('books'));
     }

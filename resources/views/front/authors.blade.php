@@ -44,5 +44,9 @@
             </div>
         </div>
     </section>
+
     <!-- cards end -->
+    <div class="pagnation col-8 my-4 text-center mx-auto">
+        {{ $authors->links() }}
+    </div>
 @endsection
