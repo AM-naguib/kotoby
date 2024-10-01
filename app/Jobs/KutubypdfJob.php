@@ -128,9 +128,9 @@ class KutubypdfJob implements ShouldQueue
         $stream = fopen($url, 'r');
         if ($stream) {
             Storage::put($filePath, $stream);
-            fclose($stream); 
+            fclose($stream);
         } else {
-            throw new \Exception("Unable to open URL stream.");
+            Log::info("Unable to open URL stream.");
         }
 
         return "$path/" . $fileName;
