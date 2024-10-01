@@ -2,6 +2,21 @@
 @section("title", "نتائج البحث عن " . request("search"))
 @section("description", getSetting()->description)
 @section("keywords", getSetting()->keywords)
+@section("schema")
+<script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "{{ getSetting()->site_title }}",
+      "url": "{{ env('APP_URL') }}",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "{{ env('APP_URL') }}?search={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
+@endsection
 @section('content')
     <!-- cards start -->
     <section class="cards">

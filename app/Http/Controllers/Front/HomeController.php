@@ -54,7 +54,7 @@ class HomeController extends Controller
         $data = $model::where('slug', $slug)->first();
         $books = $data->books()->paginate(30);
 
-        return view('front.page', compact('data', 'books'));
+        return view('front.page', compact('data', 'books', 'type'));
     }
 
     public function review(Request $request, $bookId)

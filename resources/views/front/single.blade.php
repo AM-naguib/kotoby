@@ -1,7 +1,36 @@
 @extends('front.layouts.app')
-@section("title", "تحميل " . $book->title)
-@section("description", $book->description)
+@section('title', 'تحميل ' . $book->title)
+@section('description', $book->description)
 @section('keywords', $book->htmlKeywords())
+@section('schema')
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Book",
+      "name": "{{ $book->title }}",
+      "author": {
+        "@type": "Person",
+        "name": "{{ $book->author->name }}"
+      },
+      "image": "{{ env('APP_URL') . '/storage/' . $book->image_url }}",
+      "description": "{{ $book->description }}",
+      "isbn": "{{ $book->isbn }}",
+      "publisher": {
+        "@type": "Organization",
+        "name": "{{ $book->author->name }}"
+      },
+      "datePublished": "{{ $book->created_at->toDateString() }}",
+      "inLanguage": "ar",
+      "bookSection": {
+        "@type": "CreativeWork",
+        "name": "{{ $book->section->name }}"
+      },
+      "url": "{{ route('front.single', $book->slug) }}"
+    }
+    </script>
+
+
+@endsection
 @section('content')
     <style>
         .starability-result {
@@ -97,10 +126,11 @@
                     <h3>لمحة عن الكتاب</h3>
                     <p>{{ $book->description }}</p>
                     <div class="buttons d-flex justify-content-center gap-3">
-                        <a class="body-btn text-white"
-                            href="{{route("front.dowen.book",$book->slug)}}"><i class="fa-solid fa-download"></i>
+                        <a class="body-btn text-white" href="{{ route('front.dowen.book', $book->slug) }}"><i
+                                class="fa-solid fa-download"></i>
                             <span>تحميل الكتاب</span></a>
-                        <a class="body-btn red text-white" href="{{route("front.read.book",$book->slug)}}"><i class="fa-solid fa-book-open"></i> <span>تصفح
+                        <a class="body-btn red text-white" href="{{ route('front.read.book', $book->slug) }}"><i
+                                class="fa-solid fa-book-open"></i> <span>تصفح
                                 الكتاب</span></a>
                     </div>
                 </div>
