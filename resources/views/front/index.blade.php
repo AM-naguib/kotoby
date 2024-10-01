@@ -109,7 +109,7 @@
                         <div class="search-input">
                             <form action="{{ route('front.search') }}" method="get">
                                 <button class="btn btn-search btn-danger text-white">بحث</button>
-                                <input type="search" placeholder="ابحث عن كتاب أو مؤلف أو قسم كتاب" name="search">
+                                <input type="search" placeholder="ابحث عن كتابك" name="search">
                                 <span class="icon">
                                     <svg version="1.1" xmlns="http://www.w3.org/2000/svg"
                                         xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
