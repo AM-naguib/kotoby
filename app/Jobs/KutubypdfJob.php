@@ -122,11 +122,20 @@ class KutubypdfJob implements ShouldQueue
 
     public function fileSave($url, $path)
     {
-        $fileContents = file_get_contents($url);
         $fileName = hexdec(uniqid('')) . '.' . pathinfo($url, PATHINFO_EXTENSION);
-        Storage::put("public/$path/" . $fileName, $fileContents);
+        $filePath = "public/$path/" . $fileName;
+
+        $stream = fopen($url, 'r');
+        if ($stream) {
+            Storage::put($filePath, $stream);
+            fclose($stream); 
+        } else {
+            throw new \Exception("Unable to open URL stream.");
+        }
+
         return "$path/" . $fileName;
     }
+
     function getValue($text) {
         $parts = explode(":", $text);
         return isset($parts[1]) ? trim($parts[1]) : 'Not found';
