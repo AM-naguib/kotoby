@@ -96,10 +96,10 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.1/dist/sweetalert2.min.css
                 <ul class="navbar-nav justify-content-end flex-grow-1 pe-3 my-3">
                     @guest
 
-                    <li class="nav-item">
+                    <li class="nav-item d-none d-md-block">
                         <a class="nav-link" aria-current="page" href="{{ route('login.create') }}">تسجيل الدخول</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item d-none d-md-block">
                         <a class="nav-link" aria-current="page" href="{{ route('register.create') }}">انشاء حساب</a>
                     </li>
                     @endguest

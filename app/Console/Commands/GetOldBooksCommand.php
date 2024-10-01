@@ -39,9 +39,8 @@ class GetOldBooksCommand extends Command
         $noPages = str_replace("٬", "", $noPages);
 
 
-        $urls = [];
 
-        for ($i = 2; $i <= $noPages; $i++) {
+        for ($i = 2; $i <= 10; $i++) {
             $url = "https://www.kutubypdf.com/page/" . $i;
             $crawler = $client->request('GET', $url);
 
