@@ -44,18 +44,16 @@ class GetOldBooksCommand extends Command
         for ($i = 2; $i <= $noPages; $i++) {
             $url = "https://www.kutubypdf.com/page/" . $i;
             $crawler = $client->request('GET', $url);
+
             if ($client->getResponse()->getStatusCode() !== 200) {
-                return false;
+                Log::error("Failed to load page: " . $url);
+                continue;
             }
 
-            $crawler->filter('#main > div > div > div > div > a')->each(function (Crawler $node) use (&$urls) {
-                $urls[] = $node->attr('href');
+            $crawler->filter('#main > div > div > div > div > a')->each(function (Crawler $node) {
+                KutubypdfJob::dispatch($node->attr('href'));
+                Log::info($node->attr('href'));
             });
-
-        }
-        foreach ($urls as $url) {
-            KutubypdfJob::dispatch($url);
-            Log::info($url);
         }
     }
 }
