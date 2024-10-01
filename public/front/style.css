@@ -204,7 +204,7 @@ body > section.cards > div > div > div:hover{
 
 @media (max-width: 768px) {
     .search-sec .search-input {
-        min-width: 80%; 
+        min-width: 85%;
 
     }
 }
