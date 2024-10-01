@@ -34,7 +34,7 @@
           "mainEntity": {
             "@type": "ItemList",
             "itemListElement": [
-                @foreach ($books->take(10) as $book) // عرض 10 كتب فقط
+                @foreach ($books->take(5) as $book)
                 {
                   "@type": "Book",
                   "name": "{{ $book->title }}",
@@ -44,13 +44,19 @@
                     "@type": "Person",
                     "name": "{{ $book->author->name }}"
                   },
-                  "description": "{{ $book->description }}"
+                  "description": "<p>{{ $book->description }}</p>",
+                  "aggregateRating": {
+                    "@type": "AggregateRating",
+                    "ratingValue": "4.5",
+                    "ratingCount": "150"
+                  }
                 }@if (!$loop->last),@endif
                 @endforeach
             ]
           }
         }
     </script>
+
 @endsection
 
 @section('content')
