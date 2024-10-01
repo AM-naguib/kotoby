@@ -1,33 +1,40 @@
 @extends('front.layouts.app')
-@section('title', 'تحميل ' . $book->title)
+@section('title', "كتبي ! - قراءة كتاب $book->title أون لاين")
 @section('description', $book->description)
 @section('keywords', $book->htmlKeywords())
+
+@section("meta")
+<meta name="og:description" content="{{ $book->description }}">
+<meta name="og:image" content="{{ env('APP_URL') . '/storage/' . $book->image_url }}">
+<meta property="og:title" content="كتبي ! - قراءة كتاب {{ $book->title }} أون لاين">
+<meta property="og:description" content="{{ $book->description }}">
+<meta property="og:url" content="{{ route('front.single', $book->slug) }}">
+@endsection
 @section('schema')
-    <script type="application/ld+json">
+<script type="application/ld+json">
     {
-      "@context": "https://schema.org",
+      "@context": "http://schema.org",
       "@type": "Book",
       "name": "{{ $book->title }}",
       "author": {
         "@type": "Person",
-        "name": "{{ $book->author->name }}"
+        "name": "{{ $book->author->name }}",
+        "url": "{{ route('front.page', ['type' => 'author', 'slug' => $book->author->slug]) }}"
       },
-      "image": "{{ env('APP_URL') . '/storage/' . $book->image_url }}",
+      "bookFormat": "http://schema.org/Paperback",
       "description": "{{ $book->description }}",
-      "isbn": "{{ $book->isbn }}",
-      "publisher": {
-        "@type": "Organization",
-        "name": "{{ $book->author->name }}"
-      },
-      "datePublished": "{{ $book->created_at->toDateString() }}",
-      "inLanguage": "ar",
-      "bookSection": {
-        "@type": "CreativeWork",
-        "name": "{{ $book->section->name }}"
-      },
-      "url": "{{ route('front.single', $book->slug) }}"
+      "url": "{{ route('front.single', $book->slug) }}",
+      "numberOfPages": "{{ $book->numberOfPages }}",
+      "image": "{{ env('APP_URL') . '/storage/' . $book->image_url }}",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.7",
+        "bestRating": "5",
+        "worstRating": "1",
+        "ratingCount": "3"
+      }
     }
-    </script>
+</script>
 
 
 @endsection
