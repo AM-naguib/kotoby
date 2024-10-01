@@ -21,7 +21,7 @@
           "@context": "https://schema.org",
           "@type": "ItemList",
           "itemListElement": [
-            @foreach ($books as $book)
+            @foreach ($books->take(10) as $book) // عرض 10 كتب فقط
             {
               "@type": "Book",
               "name": "{{ $book->title }}",
@@ -34,7 +34,7 @@
               "description": "{{ $book->description }}"
             }@if (!$loop->last),@endif
             @endforeach
-          ]
+        ]
         }
         </script>
     @endif

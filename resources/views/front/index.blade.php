@@ -34,19 +34,19 @@
           "mainEntity": {
             "@type": "ItemList",
             "itemListElement": [
-              @foreach ($books as $book)
-              {
-                "@type": "Book",
-                "name": "{{ $book->title }}",
-                "url": "{{ route('front.single', $book->slug) }}",
-                "image": "{{ env('APP_URL') . '/storage/' . $book->image_url }}",
-                "author": {
-                  "@type": "Person",
-                  "name": "{{ $book->author->name }}"
-                },
-                "description": "{{ $book->description }}"
-              }@if (!$loop->last),@endif
-              @endforeach
+                @foreach ($books->take(10) as $book) // عرض 10 كتب فقط
+                {
+                  "@type": "Book",
+                  "name": "{{ $book->title }}",
+                  "url": "{{ route('front.single', $book->slug) }}",
+                  "image": "{{ env('APP_URL') . '/storage/' . $book->image_url }}",
+                  "author": {
+                    "@type": "Person",
+                    "name": "{{ $book->author->name }}"
+                  },
+                  "description": "{{ $book->description }}"
+                }@if (!$loop->last),@endif
+                @endforeach
             ]
           }
         }
