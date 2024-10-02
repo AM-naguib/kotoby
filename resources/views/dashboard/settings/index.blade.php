@@ -1,7 +1,7 @@
 @extends('dashboard.layouts.app')
 @section('content')
     <div class="py-4">
-        <h1>Create Book</h1>
+        <h1>Settings</h1>
     </div>
     <form action="{{ route('dashboard.settings.update') }}" class="form" id="form" method="post"
         enctype="multipart/form-data">
