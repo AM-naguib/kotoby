@@ -5,14 +5,14 @@
 
     <div class="py-4">
 
-        <h1>Reviews Requests</h1>
+        <h1>All Reviews</h1>
 
     </div>
     <div class="row justify-content-lg-center">
         <div class="col-12 mb-4">
-            <div class="card">
-                <div class="table-responsive py-4">
-                    <table class="table table-flush" id="datatable">
+            <div class="card" >
+                <div class="table-responsive py-4" >
+                    <table class="table table-flush" id="datatable" >
                         <thead class="thead-light">
                             <tr>
                                 <th>#</th>
@@ -22,10 +22,9 @@
                                 <th>Action</th>
                             </tr>
                         </thead>
-                        <tbody id="tbody">
+                        <tbody id="r_tbody">
 
                             @forelse ($reviews as $review)
-
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $review->user->username }}</td>
@@ -33,10 +32,12 @@
                                     <td>{{ $review->book->title }}</td>
 
                                     <td class="d-flex gap-3">
-                                        <button class="btn btn-success text-white"
-                                            onclick="changeStatus('{{ route('dashboard.reviews.approve', $review->id) }}','post')">Approve</button>
-                                        <button class="btn btn-danger"
-                                            onclick="changeStatus('{{ route('dashboard.reviews.destroy', $review->id) }}','delete')">Delete</button>
+                                        @if ($review->status == 0)
+                                            <button class="btn btn-success text-white"
+                                                onclick="changeStatus('{{ route('dashboard.reviews.approve', $review->id) }}','post')">Approve</button>
+                                            <button class="btn btn-danger"
+                                                onclick="changeStatus('{{ route('dashboard.reviews.destroy', $review->id) }}','delete')">Delete</button>
+                                        @endif
                                         <a class="btn btn-primary" target="_blank"
                                             href="{{ route('front.single', $review->book->slug) }}#rev_{{ $review->id }}">Show</a>
                                     </td>
@@ -71,7 +72,7 @@
                             title: "Success",
                             icon: "success"
                         });
-                        $("#tbody").load(window.location.href + " #tbody > *");
+                        $("#r_tbody").load(window.location.href + " #r_tbody > *");
                     },
                     error: function(data) {
                         Swal.fire({

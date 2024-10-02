@@ -14,15 +14,15 @@
                 @csrf
                 <div class="mb-3">
                     <label for="name" class="form-label">الاسم</label>
-                    <input type="text" class="form-control custom-rounded-input" id="name" name="name"  placeholder="ahmed">
+                    <input type="text" class="form-control custom-rounded-input" id="name" name="name"  placeholder="Name">
                 </div>
                 <div class="mb-3">
                     <label for="username" class="form-label">اسم المستخدم</label>
-                    <input type="text" class="form-control custom-rounded-input" id="username" name="username"  placeholder="ahmed">
+                    <input type="text" class="form-control custom-rounded-input" id="username" name="username"  placeholder="Username">
                 </div>
                 <div class="mb-3">
                     <label for="email" class="form-label">البريد الالكتروني</label>
-                    <input type="email" class="form-control custom-rounded-input" id="email" name="email" aria-describedby="emailHelp" placeholder="ahmed@gmail.com">
+                    <input type="email" class="form-control custom-rounded-input" id="email" name="email" aria-describedby="emailHelp" placeholder="test@gmail.com">
                 </div>
                 <div class="mb-3">
                     <label for="password" class="form-label">كلمة المرور</label>
@@ -32,6 +32,8 @@
                 <div class="mb-3 text-center">
                     <button  class="main-button">انشاء حساب</button>
                 </div>
+                <p> لديك حساب ؟ <a href="{{route("login.create")}}" class="text-primary">تسجيل الدخول</a></p>
+
             </form>
         </div>
     </div>

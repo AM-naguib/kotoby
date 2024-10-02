@@ -15,7 +15,7 @@
                 @csrf
                 <div class="mb-3">
                     <label for="username" class="form-label">اسم المستخدم</label>
-                    <input type="text" class="form-control custom-rounded-input" id="username" name="username"  placeholder="ahmed">
+                    <input type="text" class="form-control custom-rounded-input" id="username" name="username"  placeholder="Username">
                 </div>
                 <div class="mb-3">
                     <label for="password" class="form-label">كلمة المرور</label>
@@ -24,8 +24,8 @@
 
                 <div class="mb-3 text-center">
                     <button  class="main-button">تسجيل الدخول</button>
-
                 </div>
+                <p>ليس لديك حساب ؟ <a href="{{route("register.create")}}" class="text-primary"> انشاء حساب</a></p>
             </form>
         </div>
     </div>

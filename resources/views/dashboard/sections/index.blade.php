@@ -7,7 +7,7 @@
         <div class="dropdown py-3">
             <button class="btn btn-gray-800" onclick="showModal('create')" type="button">Create Section</button>
         </div>
-        <h1>All Sections</h1>
+        <h1>Settings</h1>
 
     </div>
     <div class="row justify-content-lg-center">

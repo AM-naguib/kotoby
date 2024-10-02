@@ -2,8 +2,7 @@
     <div class="sidebar-inner px-4 pt-3">
         <div class="user-card d-flex d-md-none justify-content-between justify-content-md-center pb-4">
             <div class="d-flex align-items-center">
-                <div class="avatar-lg me-4"><img src="{{ asset(' assets') }}/img/team/profile-picture-3.jpg"
-                        class="card-img-top rounded-circle border-white" alt="Bonnie Green"></div>
+                <div class="avatar-lg me-4"></div>
                 <div class="d-block">
                     <h2 class="h5 mb-3">Hi, {{ auth()->user()->name }}</h2>
                     <form action="{{ route('logout') }}" method="post">
@@ -37,10 +36,10 @@
             <li class="nav-item">
                 <a href="" class="nav-link d-flex align-items-center">
                     <span class="sidebar-icon">
-                        <img src="{{ asset('dashboard/assets/img') }}/logo.png" height="20" width="20"
+                        <img src="{{env('APP_URL')}}/storage/{{getSetting()->site_logo}}" height="20" width="40"
                             alt="Volt Logo">
                     </span>
-                    <span class="mt-1 sidebar-text">Kotoby
+                    <span class="mt-1 sidebar-text">{{getSetting()->site_title}}
                     </span></a>
             </li>
             {{-- Dashboard --}}
@@ -110,21 +109,7 @@
                     </span>
                 </a>
             </li>
-            <li class="nav-item">
-                <a href="{{ route('dashboard.reviews.index') }}"
-                    class="nav-link d-flex align-items-center justify-content-between">
-                    <span>
-                        <span class="sidebar-icon">
-                            <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"></path>
-                                <path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"></path>
-                            </svg>
-                        </span>
-                        <span class="sidebar-text">Reviews</span>
-                    </span>
-                </a>
-            </li>
+
             <li class="nav-item">
                 <span class="nav-link collapsed d-flex justify-content-between align-items-center"
                     data-bs-toggle="collapse" data-bs-target="#submenu-app">

@@ -22,7 +22,7 @@
                                 <th>Action</th>
                             </tr>
                         </thead>
-                        <tbody id="tbody">
+                        <tbody id="tbody" id="n_r_tbody">
 
                             @forelse ($reviews as $review)
 
