@@ -26,6 +26,7 @@ class SettingController extends Controller
             'footer_ads' => 'nullable',
             'single_ads' => 'nullable',
             'site_logo' => 'nullable|mimes:png,jpg,jpeg,svg,webp|max:2048',
+            'save_local' => 'nullable',
             'site_favicon' => 'nullable|mimes:png,jpg,jpeg,svg,webp|max:2048',
         ]);
 

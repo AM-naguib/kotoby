@@ -18,6 +18,7 @@ return new class extends Migration
             $table->text("keywords")->nullable();
             $table->text("site_logo")->nullable();
             $table->text("site_favicon")->nullable();
+            $table->boolean("save_local")->default(0);
             $table->text("header_ads")->nullable();
             $table->text("footer_ads")->nullable();
             $table->text("single_ads")->nullable();

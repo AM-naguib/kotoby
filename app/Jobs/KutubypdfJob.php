@@ -37,8 +37,9 @@ class KutubypdfJob implements ShouldQueue
     {
         $data = $this->getDate($this->url);
         $data["image_url"] = $this->fileSave($data["image_url"], "uploads");
-
-        $data["pdf_url"] = $this->fileSave($data["pdf_url"], "files");
+        if (getSetting()->save_local == 1) {
+            $data["pdf_url"] = $this->fileSave($data["pdf_url"], "uploads");
+        }
 
 
         $this->addPost($data);
@@ -136,11 +137,13 @@ class KutubypdfJob implements ShouldQueue
         return "$path/" . $fileName;
     }
 
-    function getValue($text) {
+    function getValue($text)
+    {
         $parts = explode(":", $text);
         return isset($parts[1]) ? trim($parts[1]) : 'Not found';
     }
-    public function addCustomKeywords($book){
+    public function addCustomKeywords($book)
+    {
         $author = $book->author->name ?? "";
         $titles = [
             "تحميل $book->title pdf",
@@ -151,7 +154,7 @@ class KutubypdfJob implements ShouldQueue
             "رواية $book->title ل$author",
             "$book->title $author pdf"
         ];
-        foreach ($titles as $title){
+        foreach ($titles as $title) {
             Keyword::create([
                 "name" => $title,
                 "slug" => Str::slug($title),

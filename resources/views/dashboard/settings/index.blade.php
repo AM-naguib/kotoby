@@ -23,6 +23,13 @@
                         <textarea name="site_keywords" class="form-control" id="site_keywords">{{ $settings->keywords }}</textarea>
                     </div>
                     <div class="mb-3">
+                        <label for="save_local" class="form-label">Save Books In Local</label>
+                        <select name="save_local" id="save_local" class="form-select">
+                            <option value="1" {{ $settings->save_local == 1 ? 'selected' : '' }}>Yes</option>
+                            <option value="0" {{ $settings->save_local == 0 ? 'selected' : '' }}>No</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
                         <label for="header_adss" class="form-label">Header Ads</label>
                         <textarea name="header_ads" class="form-control" id="header_adss">{{ $settings->header_ads }}</textarea>
                     </div>
