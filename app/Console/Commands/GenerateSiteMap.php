@@ -33,53 +33,77 @@ class GenerateSiteMap extends Command
      */
     public function handle()
     {
-        $sectionSitemap = Sitemap::create();
-        Section::chunk(100, function ($sections) use ($sectionSitemap) {
+        // عدد السجلات في كل ملف
+        $chunkSize = 1000;
+
+        // مصفوفات لتخزين مسارات ملفات السايت ماب
+        $sectionSitemapFiles = [];
+        $bookSitemapFiles = [];
+        $authorSitemapFiles = [];
+        $keywordSitemapFiles = [];
+        if (!file_exists(public_path('sitemaps'))) {
+            mkdir(public_path('sitemaps'), 0777, true); // إنشاء المجلد مع صلاحيات 0777
+        }
+
+        // إنشاء ملفات سايت ماب للأقسام
+        Section::chunk($chunkSize, function ($sections, $page) use (&$sectionSitemapFiles) {
+            $sectionSitemap = Sitemap::create();
             foreach ($sections as $section) {
                 $sectionSitemap->add(url('/section/' . $section->slug));
             }
+            $sitemapFilePath = public_path('sitemaps/sitemap_sections_page_' . $page . '.xml');
+            $sectionSitemap->writeToFile($sitemapFilePath);
+            $sectionSitemapFiles[] = url('/sitemaps/sitemap_sections_page_' . $page . '.xml');
         });
-        $sectionSitemap->writeToFile(public_path('sitemap_sections.xml'));
 
-
-        $bookSitemap = Sitemap::create();
-        Book::chunk(100, function ($books) use ($bookSitemap) {
+        // إنشاء ملفات سايت ماب للكتب
+        Book::chunk($chunkSize, function ($books, $page) use (&$bookSitemapFiles) {
+            $bookSitemap = Sitemap::create();
             foreach ($books as $book) {
                 $bookSitemap->add(
                     Url::create(url('/book/' . $book->slug))
                         ->setLastModificationDate(Carbon::create($book->updated_at))
                         ->setChangeFrequency(Url::CHANGE_FREQUENCY_YEARLY)
                         ->setPriority(1)
-
                 );
             }
+            $sitemapFilePath = public_path('sitemaps/sitemap_books_page_' . $page . '.xml');
+            $bookSitemap->writeToFile($sitemapFilePath);
+            $bookSitemapFiles[] = url('/sitemaps/sitemap_books_page_' . $page . '.xml');
         });
-        $bookSitemap->writeToFile(public_path('sitemap_books.xml'));
 
-
-        $authorSitemap = Sitemap::create();
-        Author::chunk(100, function ($authors) use ($authorSitemap) {
+        // إنشاء ملفات سايت ماب للمؤلفين
+        Author::chunk($chunkSize, function ($authors, $page) use (&$authorSitemapFiles) {
+            $authorSitemap = Sitemap::create();
             foreach ($authors as $author) {
                 $authorSitemap->add(url('/author/' . $author->slug));
             }
+            $sitemapFilePath = public_path('sitemaps/sitemap_authors_page_' . $page . '.xml');
+            $authorSitemap->writeToFile($sitemapFilePath);
+            $authorSitemapFiles[] = url('/sitemaps/sitemap_authors_page_' . $page . '.xml');
         });
-        $authorSitemap->writeToFile(public_path('sitemap_authors.xml'));
 
-        $keywordSitemap = Sitemap::create();
-        Keyword::chunk(100, function ($keywords) use ($keywordSitemap) {
+        // إنشاء ملفات سايت ماب للكلمات المفتاحية
+        Keyword::chunk($chunkSize, function ($keywords, $page) use (&$keywordSitemapFiles) {
+            $keywordSitemap = Sitemap::create();
             foreach ($keywords as $keyword) {
                 $keywordSitemap->add(url('/keyword/' . $keyword->slug));
             }
+            $sitemapFilePath = public_path('sitemaps/sitemap_keywords_page_' . $page . '.xml');
+            $keywordSitemap->writeToFile($sitemapFilePath);
+            $keywordSitemapFiles[] = url('/sitemaps/sitemap_keywords_page_' . $page . '.xml');
         });
-        $keywordSitemap->writeToFile(public_path('sitemap_keywords.xml'));
 
+        // إنشاء ملف سايت ماب إندكس
         $mainSitemap = Sitemap::create();
-        $mainSitemap->add(url('/sitemap_sections.xml'));
-        $mainSitemap->add(url('/sitemap_books.xml'));
-        $mainSitemap->add(url('/sitemap_authors.xml'));
-        $mainSitemap->add(url('/sitemap_keywords.xml'));
-        $mainSitemap->writeToFile(public_path('sitemap.xml'));
 
-        Log::info("Sitemap generated" . date('Y-m-d H:i:s'));
+        foreach (array_merge($sectionSitemapFiles, $bookSitemapFiles, $authorSitemapFiles, $keywordSitemapFiles) as $file) {
+            $mainSitemap->add($file);
+        }
+
+        $mainSitemap->writeToFile(public_path('sitemaps/sitemap.xml'));
+
+        // تسجيل عملية إنشاء السايت ماب
+        Log::info("Sitemap generated successfully at " . date('Y-m-d H:i:s'));
     }
 }
