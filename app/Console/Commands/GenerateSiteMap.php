@@ -49,14 +49,13 @@ class GenerateSiteMap extends Command
         Section::chunk($chunkSize, function ($sections, $page) use (&$sectionSitemapFiles) {
             $sectionSitemap = Sitemap::create();
             foreach ($sections as $section) {
-                $sectionSitemap->add(url('/section/' . $section->slug));
+                $sectionSitemap->add(url('/page/section/' . $section->slug));
             }
             $sitemapFilePath = public_path('sitemaps/sitemap_sections_page_' . $page . '.xml');
             $sectionSitemap->writeToFile($sitemapFilePath);
             $sectionSitemapFiles[] = url('/sitemaps/sitemap_sections_page_' . $page . '.xml');
         });
 
-        // إنشاء ملفات سايت ماب للكتب
         Book::chunk($chunkSize, function ($books, $page) use (&$bookSitemapFiles) {
             $bookSitemap = Sitemap::create();
             foreach ($books as $book) {
@@ -72,27 +71,17 @@ class GenerateSiteMap extends Command
             $bookSitemapFiles[] = url('/sitemaps/sitemap_books_page_' . $page . '.xml');
         });
 
-        // إنشاء ملفات سايت ماب للمؤلفين
         Author::chunk($chunkSize, function ($authors, $page) use (&$authorSitemapFiles) {
             $authorSitemap = Sitemap::create();
             foreach ($authors as $author) {
-                $authorSitemap->add(url('/author/' . $author->slug));
+                $authorSitemap->add(url('/page/author/' . $author->slug));
             }
             $sitemapFilePath = public_path('sitemaps/sitemap_authors_page_' . $page . '.xml');
             $authorSitemap->writeToFile($sitemapFilePath);
             $authorSitemapFiles[] = url('/sitemaps/sitemap_authors_page_' . $page . '.xml');
         });
 
-        // إنشاء ملفات سايت ماب للكلمات المفتاحية
-        Keyword::chunk($chunkSize, function ($keywords, $page) use (&$keywordSitemapFiles) {
-            $keywordSitemap = Sitemap::create();
-            foreach ($keywords as $keyword) {
-                $keywordSitemap->add(url('/keyword/' . $keyword->slug));
-            }
-            $sitemapFilePath = public_path('sitemaps/sitemap_keywords_page_' . $page . '.xml');
-            $keywordSitemap->writeToFile($sitemapFilePath);
-            $keywordSitemapFiles[] = url('/sitemaps/sitemap_keywords_page_' . $page . '.xml');
-        });
+
 
         // إنشاء ملف سايت ماب إندكس
         $mainSitemap = Sitemap::create();
