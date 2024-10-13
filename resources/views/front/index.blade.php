@@ -214,11 +214,17 @@
     <div class="pagnation col-8 my-4 text-center mx-auto">
         {{ $books->links() }}
     </div>
-
     <script>
         function addFavorite(bookId) {
+            let url = "{{ route('profile.add.favourite', ':id') }}".replace(':id', bookId);
+
+            // التأكد أن الرابط يستخدم HTTPS
+            if (!url.startsWith('https://')) {
+                url = url.replace('http://', 'https://');
+            }
+
             $.ajax({
-                url: "{{ route('profile.add.favourite', ':id') }}".replace(':id', bookId),
+                url: url,
                 type: "POST",
                 data: {
                     _token: "{{ csrf_token() }}"
@@ -229,4 +235,5 @@
             });
         }
     </script>
+
 @endsection
