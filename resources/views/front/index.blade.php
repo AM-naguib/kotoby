@@ -186,11 +186,11 @@
                                     </a>
                                 </h3>
                                 <p class="author-label">
-                                    @if ($book->author)
-
-                                    <a
-                                        href="{{ route('front.page', ['type' => 'author', 'slug' => $book->author->slug]) }}">{{ $book->author->name }}</a>
-                                    @endif
+                                    @if ($book->author && $book->author->slug)
+                                    <a href="{{ route('front.page', ['type' => 'author', 'slug' => $book->author->slug]) }}">
+                                        {{ $book->author->name }}
+                                    </a>
+                                @endif
                                     @if (!$book->isFavorite())
                                         <i class="fa-regular fa-bookmark mx-1 text-danger fs-5" style="cursor:pointer"
                                             onclick="addFavorite({{ $book->id }})"></i>
