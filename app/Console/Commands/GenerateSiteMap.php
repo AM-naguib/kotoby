@@ -101,7 +101,7 @@ class GenerateSiteMap extends Command
             $mainSitemap->add($file);
         }
 
-        $mainSitemap->writeToFile(public_path('sitemaps/sitemap.xml'));
+        $mainSitemap->writeToFile(public_path('sitemap.xml'));
 
         // تسجيل عملية إنشاء السايت ماب
         Log::info("Sitemap generated successfully at " . date('Y-m-d H:i:s'));
