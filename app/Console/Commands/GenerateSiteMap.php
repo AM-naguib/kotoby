@@ -36,13 +36,12 @@ class GenerateSiteMap extends Command
         // عدد السجلات في كل ملف
         $chunkSize = 1000;
 
-        // مصفوفات لتخزين مسارات ملفات السايت ماب
         $sectionSitemapFiles = [];
         $bookSitemapFiles = [];
         $authorSitemapFiles = [];
         $keywordSitemapFiles = [];
         if (!file_exists(public_path('sitemaps'))) {
-            mkdir(public_path('sitemaps'), 0777, true); // إنشاء المجلد مع صلاحيات 0777
+            mkdir(public_path('sitemaps'), 0777, true);
         }
 
         // إنشاء ملفات سايت ماب للأقسام
@@ -83,7 +82,6 @@ class GenerateSiteMap extends Command
 
 
 
-        // إنشاء ملف سايت ماب إندكس
         $mainSitemap = Sitemap::create();
 
         foreach (array_merge($sectionSitemapFiles, $bookSitemapFiles, $authorSitemapFiles, $keywordSitemapFiles) as $file) {
@@ -92,7 +90,6 @@ class GenerateSiteMap extends Command
 
         $mainSitemap->writeToFile(public_path('sitemap.xml'));
 
-        // تسجيل عملية إنشاء السايت ماب
         Log::info("Sitemap generated successfully at " . date('Y-m-d H:i:s'));
     }
 }
