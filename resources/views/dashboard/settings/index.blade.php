@@ -7,6 +7,14 @@
         enctype="multipart/form-data">
         @csrf
         <div class="row">
+            {{-- @dd($errors) --}}
+            @if ($errors->any())
+                @foreach ($errors->all() as $error)
+                    <div class="col-8 mx-auto">
+                        <div class="alert alert-danger">{{ $error }}</div>
+                    </div>
+                @endforeach
+            @endif
             <div class="col-8 mx-auto">
                 <div class="card card-body border-0 shadow mb-4">
                     <div class="mb-3">
@@ -16,11 +24,11 @@
                     </div>
                     <div class="mb-3">
                         <label for="description" class="form-label">Site Description</label>
-                        <textarea name="site_description" class="form-control" id="description">{{ $settings->description }}</textarea>
+                        <textarea name="description" class="form-control" id="description">{{ $settings->description }}</textarea>
                     </div>
                     <div class="mb-3">
-                        <label for="site_keywords" class="form-label">Site Keywords</label>
-                        <textarea name="site_keywords" class="form-control" id="site_keywords">{{ $settings->keywords }}</textarea>
+                        <label for="keywords" class="form-label">Site Keywords</label>
+                        <textarea name="keywords" class="form-control" id="keywords">{{ $settings->keywords }}</textarea>
                     </div>
                     <div class="mb-3">
                         <label for="save_local" class="form-label">Save Books In Local</label>
