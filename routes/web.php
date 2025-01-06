@@ -143,14 +143,24 @@ Route::controller(UserProfileController::class)->prefix("profile")->name("profil
 
 
 
-Route::get('test', function () {
-    $command = 'start /B php ' . base_path('artisan') . ' sendpages:queue';
-    pclose(popen($command, 'r'));
+// Route::get('test', function () {
+//     $command = 'start /B php ' . base_path('artisan') . ' sendpages:queue';
+//     pclose(popen($command, 'r'));
 
-    return 'Command is running in the background!';
+//     return 'Command is running in the background!';
+// });
+
+
+
+
+
+
+Route::get("ana",function(){
+    $url = '/link/?9486';
+
+    $url = explode("?", $url)[1];
+    return $url;
 });
-
-
 
 
 

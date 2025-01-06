@@ -73,14 +73,22 @@ class KutubypdfJob implements ShouldQueue
         ];
 
 
-        $dowenloadUrl = "https://www.kutubypdf.com" . $crawler->filter('div > div > div:nth-child(5) > a')->attr('href');
+
+        $dowenloadId = $crawler->filter('div > div > div:nth-child(5) > a')->attr('href');
+
+        $dowenloadId = explode("?", $dowenloadId)[1];
+
+        $dowenloadUrl = "https://pdfkutub.co/d1.php?id=" . $dowenloadId;
+
+
+        Log::info($dowenloadUrl);
 
         $crawler = $client->request('GET', $dowenloadUrl);
 
         if ($client->getResponse()->getStatusCode() !== 200) {
             return false;
         }
-        $data["pdf_url"] = $crawler->filter(' div:nth-child(8) > a')->attr('href');
+        $data["pdf_url"] = $crawler->filter(' body > main > button > a')->attr('href');
 
         return $data;
     }
